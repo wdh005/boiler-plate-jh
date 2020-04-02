@@ -5,7 +5,8 @@ const port = 3000;
 const bodyParser = require('body-parser');
 const { User } = require("./models/User");
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://jongmato:jonghyun@youtubeclone-amn98.mongodb.net/test?retryWrites=true&w=majority', {
+const config = require('./config/key');
+mongoose.connect(config.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -18,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 //application/json type 을 가져온다.
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => res.send(''));
+app.get('/', (req, res) => res.send('hello'));
 
 app.post('/register', (req,res) => {
     //회원가입시 필요한 정보들을 client에서 가져와 DB에 넣어준다.
