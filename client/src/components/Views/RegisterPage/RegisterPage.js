@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../_actions/user_action';
 import Axios from 'axios';
 import { withRouter } from 'react-router-dom';
-
 function RegisterPage(props) {
     const dispatch = useDispatch();
-    
+
     const [Email, setEmail] = useState("")
     const [Name, setName] = useState("")
     const [Password, setPassword] = useState("")
@@ -33,7 +32,7 @@ function RegisterPage(props) {
         event.preventDefault();
 
         if (Password !== ConfirmPassword) {
-            return alert('비밀번호와 비밀번호 확인이 다릅니다.')
+            return alert('비밀번호와 비밀번호 확인은 같아야 합니다.')
         }
 
         let body = {
@@ -50,12 +49,15 @@ function RegisterPage(props) {
                 }
             })
     }
+
+
+
     return (
         <div style={{
             display: 'flex', justifyContent: 'center', alignItems: 'center'
             , width: '100%', height: '100vh'
         }}>
-            <form style={{ display: 'flex', flexDirection: 'column'}}
+            <form style={{ display: 'flex', flexDirection: 'column' }}
                 onSubmit={onSubmitHandler}
             >
                 <label>Email</label>
@@ -68,13 +70,15 @@ function RegisterPage(props) {
                 <input type="password" value={Password} onChange={onPasswordHandler} />
 
                 <label>Confirm Password</label>
-                <input type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />   
+                <input type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
 
                 <br />
-                <button type="submmit" >회원가입</button>         
+                <button type="submit">
+                    회원 가입
+                </button>
             </form>
         </div>
     )
 }
 
-export default RegisterPage;
+export default withRouter(RegisterPage)
